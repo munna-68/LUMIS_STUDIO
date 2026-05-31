@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="LUMIS editorial placeholder">
+  <rect width="1200" height="1500" fill="#0f0f0f"/>
+  <rect x="48" y="48" width="1104" height="1404" fill="none" stroke="#242424" stroke-width="2"/>
+  <path d="M180 410H1020" stroke="#1d1d1d" stroke-width="8"/>
+  <path d="M240 520H960" stroke="#1d1d1d" stroke-width="8"/>
+  <path d="M300 630H900" stroke="#1d1d1d" stroke-width="8"/>
+  <path d="M360 740H840" stroke="#1d1d1d" stroke-width="8"/>
+  <rect x="390" y="220" width="420" height="110" fill="#151515"/>
+  <text x="72" y="1410" fill="#6c6c6c" font-family="Georgia, serif" font-size="44" letter-spacing="5">LUMIS / EDITORIAL</text>
+</svg>

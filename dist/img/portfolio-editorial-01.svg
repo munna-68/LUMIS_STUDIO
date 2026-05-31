@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="Portfolio editorial one placeholder">
+  <rect width="1200" height="1500" fill="#101010"/>
+  <rect x="48" y="48" width="1104" height="1404" fill="none" stroke="#242424" stroke-width="2"/>
+  <path d="M180 420H1020" stroke="#1d1d1d" stroke-width="8"/>
+  <path d="M220 520H980" stroke="#1d1d1d" stroke-width="8"/>
+  <path d="M260 620H940" stroke="#1d1d1d" stroke-width="8"/>
+  <rect x="360" y="240" width="480" height="150" fill="#151515"/>
+  <text x="72" y="1410" fill="#6c6c6c" font-family="Georgia, serif" font-size="42" letter-spacing="5">LUMIS / PORTFOLIO 03</text>
+</svg>

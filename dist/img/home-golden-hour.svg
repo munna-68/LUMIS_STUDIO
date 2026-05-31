@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="LUMIS golden hour placeholder">
+  <rect width="1200" height="1500" fill="#101010"/>
+  <rect x="48" y="48" width="1104" height="1404" fill="none" stroke="#242424" stroke-width="2"/>
+  <circle cx="930" cy="320" r="120" fill="#151515"/>
+  <rect x="130" y="340" width="940" height="7" fill="#1b1b1b"/>
+  <rect x="130" y="380" width="760" height="7" fill="#1b1b1b"/>
+  <rect x="130" y="420" width="620" height="7" fill="#1b1b1b"/>
+  <text x="72" y="1410" fill="#6c6c6c" font-family="Georgia, serif" font-size="44" letter-spacing="5">LUMIS / GOLDEN HOUR</text>
+</svg>

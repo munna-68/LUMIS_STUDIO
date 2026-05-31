@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-label="LUMIS commercial placeholder">
+  <rect width="1400" height="1000" fill="#101010"/>
+  <rect x="48" y="48" width="1304" height="904" fill="none" stroke="#242424" stroke-width="2"/>
+  <rect x="180" y="220" width="1040" height="18" fill="#1a1a1a"/>
+  <rect x="180" y="270" width="860" height="18" fill="#1a1a1a"/>
+  <rect x="180" y="320" width="740" height="18" fill="#1a1a1a"/>
+  <rect x="180" y="520" width="1040" height="190" fill="#151515"/>
+  <text x="72" y="930" fill="#6c6c6c" font-family="Georgia, serif" font-size="40" letter-spacing="5">LUMIS / COMMERCIAL</text>
+</svg>

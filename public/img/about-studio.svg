@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="LUMIS studio interior placeholder">
+  <rect width="1200" height="1500" fill="#101010"/>
+  <rect x="48" y="48" width="1104" height="1404" fill="none" stroke="#242424" stroke-width="2"/>
+  <rect x="180" y="240" width="840" height="18" fill="#1a1a1a"/>
+  <rect x="220" y="310" width="760" height="18" fill="#1a1a1a"/>
+  <rect x="280" y="380" width="640" height="18" fill="#1a1a1a"/>
+  <rect x="320" y="800" width="560" height="200" fill="#151515"/>
+  <circle cx="860" cy="860" r="170" fill="#161616"/>
+  <text x="72" y="1410" fill="#6c6c6c" font-family="Georgia, serif" font-size="44" letter-spacing="5">LUMIS / STUDIO</text>
+</svg>

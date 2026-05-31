@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="Portfolio portrait two placeholder">
+  <rect width="1200" height="1500" fill="#0f0f0f"/>
+  <rect x="48" y="48" width="1104" height="1404" fill="none" stroke="#242424" stroke-width="2"/>
+  <rect x="300" y="240" width="600" height="16" fill="#1a1a1a"/>
+  <rect x="260" y="300" width="680" height="16" fill="#1a1a1a"/>
+  <circle cx="600" cy="650" r="220" fill="#161616"/>
+  <text x="72" y="1410" fill="#6c6c6c" font-family="Georgia, serif" font-size="42" letter-spacing="5">LUMIS / PORTFOLIO 05</text>
+</svg>
