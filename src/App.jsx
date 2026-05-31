@@ -200,8 +200,7 @@ function prepareTextAnimations() {
     lines.forEach((line, index) => {
       const cleanLine = line.trim();
       const lineWrapper = document.createElement("span");
-      lineWrapper.className =
-        "inline-block max-w-full whitespace-normal md:whitespace-nowrap";
+      lineWrapper.className = "inline-block max-w-full whitespace-normal md:whitespace-nowrap";
 
       for (const char of cleanLine) {
         if (char === " ") {
@@ -375,6 +374,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(() => resolvePageKey());
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentPageRef = useRef(currentPage);
+  const mobileMenuRef = useRef(null);
+  const mobileMenuToggleRef = useRef(null);
   const bootedRef = useRef(false);
 
   useEffect(() => {
@@ -394,6 +395,29 @@ function App() {
 
     return () => {
       document.body.classList.remove("no-scroll");
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+
+    const handlePointerDown = (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Node)) return;
+
+      const clickedInsideMenu = mobileMenuRef.current?.contains(target);
+      const clickedToggleButton = mobileMenuToggleRef.current?.contains(target);
+
+      if (!clickedInsideMenu && !clickedToggleButton) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown, true);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown, true);
     };
   }, [isMobileMenuOpen]);
 
@@ -684,16 +708,11 @@ function App() {
       >
         <a
           href="./index.html"
-          className={`nav-link font-syne text-lg md:text-xl tracking-wide font-semibold uppercase mix-blend-difference pointer-events-auto relative py-1 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-champagne/25 ${
-            currentPage === "home" ? "text-gray-400" : "text-white"
-          }`}
-          data-page="home"
+          className="nav-link font-syne text-lg md:text-xl tracking-wide font-semibold uppercase mix-blend-difference pointer-events-auto relative py-1 overflow-hidden group text-white focus:outline-none focus:ring-2 focus:ring-champagne/25"
         >
           <span>LUMIS</span>
           <span
-            className={`absolute bottom-0 left-0 w-full h-[1px] bg-champagne transform origin-left transition-transform duration-300 ${
-              currentPage === "home" ? "scale-x-100" : "scale-x-0"
-            }`}
+            className="absolute bottom-0 left-0 w-full h-[1px] bg-champagne transform origin-left scale-x-0 transition-transform duration-300"
           ></span>
         </a>
         <div className="pointer-events-auto flex items-center gap-3 md:hidden">
@@ -711,6 +730,7 @@ function App() {
           </a>
           <button
             type="button"
+            ref={mobileMenuToggleRef}
             onClick={() => setIsMobileMenuOpen((open) => !open)}
             className="nav-link inline-flex items-center gap-3 rounded-full border border-white/15 px-4 py-2 text-[10px] tracking-[0.35em] uppercase text-white transition-colors duration-200 ease-out hover:text-gray-300 hover:border-champagne/40 focus:outline-none focus:ring-2 focus:ring-champagne/20"
             aria-expanded={isMobileMenuOpen}
@@ -774,6 +794,7 @@ function App() {
 
       <div
         id="mobile-navigation"
+        ref={mobileMenuRef}
         className={`fixed inset-x-0 top-[72px] z-[119] md:hidden transition-all duration-300 ease-out ${
           isMobileMenuOpen
             ? "pointer-events-auto opacity-100 translate-y-0"
