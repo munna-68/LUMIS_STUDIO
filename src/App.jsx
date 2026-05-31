@@ -22,19 +22,19 @@ const HOME_TEASERS = [
     title: "Portrait",
     label: "Quiet frames",
     href: "./portfolio.html",
-    image: "./img/home-portrait.svg",
+    image: "/img/home-portrait.svg",
   },
   {
     title: "Commercial",
     label: "Brand work",
     href: "./portfolio.html",
-    image: "./img/home-commercial.svg",
+    image: "/img/home-commercial.svg",
   },
   {
     title: "Editorial",
     label: "Story-led",
     href: "./portfolio.html",
-    image: "./img/home-editorial.svg",
+    image: "/img/home-editorial.svg",
   },
 ];
 
@@ -43,37 +43,37 @@ const PORTFOLIO_PROJECTS = [
     title: "Northlight Portraits",
     category: "Portrait",
     location: "Brooklyn, NY",
-    image: "./img/portfolio-portrait-01.svg",
+    image: "/img/portfolio-portrait-01.svg",
   },
   {
     title: "Quiet Launch",
     category: "Commercial",
     location: "Austin, TX",
-    image: "./img/portfolio-commercial-01.svg",
+    image: "/img/portfolio-commercial-01.svg",
   },
   {
     title: "Field Notes",
     category: "Editorial",
     location: "Paris, FR",
-    image: "./img/portfolio-editorial-01.svg",
+    image: "/img/portfolio-editorial-01.svg",
   },
   {
     title: "After Hours",
     category: "Event",
     location: "New York, NY",
-    image: "./img/portfolio-event-01.svg",
+    image: "/img/portfolio-event-01.svg",
   },
   {
     title: "Low Tide Portraits",
     category: "Portrait",
     location: "Reykjavik, IS",
-    image: "./img/portfolio-portrait-02.svg",
+    image: "/img/portfolio-portrait-02.svg",
   },
   {
     title: "Surface Study",
     category: "Commercial",
     location: "Los Angeles, CA",
-    image: "./img/portfolio-commercial-02.svg",
+    image: "/img/portfolio-commercial-02.svg",
   },
 ];
 
@@ -127,7 +127,7 @@ const JOURNAL_POSTS = [
     id: "light",
     title: "Why We Start With Shadow",
     category: "Light Notes",
-    image: "./img/journal-light.svg",
+    image: "/img/journal-light.svg",
     excerpt:
       "The cleanest frame usually begins by removing too much light, not adding more.",
   },
@@ -135,7 +135,7 @@ const JOURNAL_POSTS = [
     id: "craft",
     title: "The Value of a Tighter Edit",
     category: "Craft",
-    image: "./img/journal-craft.svg",
+    image: "/img/journal-craft.svg",
     excerpt:
       "A better selection always feels smaller. That restraint is what gives the image force.",
   },
@@ -143,7 +143,7 @@ const JOURNAL_POSTS = [
     id: "vision",
     title: "What We Look For Before the Shoot Starts",
     category: "Vision",
-    image: "./img/journal-vision.svg",
+    image: "/img/journal-vision.svg",
     excerpt:
       "Tone, pacing, and the final use of the image shape the direction before the first frame.",
   },
@@ -759,7 +759,7 @@ function HomePage() {
               className="group block w-full max-w-lg aspect-[4/5] reveal-img-container rounded-2xl shadow-2xl shadow-black/50 relative overflow-hidden"
             >
               <img
-                src="./img/home-golden-hour.svg"
+                src="/img/home-golden-hour.svg"
                 alt="Golden hour portrait session placeholder"
                 className="w-full h-full object-cover reveal-img"
               />
@@ -1004,7 +1004,7 @@ function AboutPage() {
           <div className="lg:col-span-6">
             <div className="w-full aspect-[4/5] reveal-img-container rounded-2xl shadow-2xl shadow-black/40">
               <img
-                src="./img/about-studio.svg"
+                src="/img/about-studio.svg"
                 alt="Studio interior placeholder"
                 className="w-full h-full object-cover reveal-img"
               />
