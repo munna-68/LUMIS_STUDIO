@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const PAGE_ORDER = [
   "home",
@@ -159,6 +159,136 @@ function resolvePageKey() {
   return PAGE_ORDER.includes(pageKey) ? pageKey : "home";
 }
 
+function resolvePageHref(pageKey) {
+  return pageKey === "home" ? "./index.html" : `./${pageKey}.html`;
+}
+
+function resetPageElements(pageId) {
+  const { gsap } = window;
+  if (!gsap) return;
+
+  const page = document.getElementById(`page-${pageId}`);
+  if (!page) return;
+
+  gsap.set(page.querySelectorAll(".reveal-char"), {
+    opacity: 0,
+    filter: "blur(25px)",
+    scale: 1.3,
+    y: 0,
+  });
+
+  gsap.set(page.querySelectorAll(".text-reveal-p"), {
+    opacity: 0,
+    filter: "blur(10px)",
+    y: 10,
+  });
+
+  gsap.set(page.querySelectorAll(".initial-hide"), {
+    opacity: 0,
+    y: 15,
+  });
+
+  gsap.set(page.querySelectorAll(".reveal-img-container"), {
+    clipPath: "inset(25% 25% 25% 25% round 32px)",
+  });
+
+  gsap.set(page.querySelectorAll(".reveal-img"), {
+    scale: 1.35,
+    rotate: -2,
+    filter: "blur(10px) brightness(0.2) contrast(180%)",
+  });
+}
+
+function setupScrollTriggers(pageId) {
+  const { gsap, ScrollTrigger } = window;
+  if (!gsap || !ScrollTrigger) return;
+
+  const page = document.getElementById(`page-${pageId}`);
+  if (!page) return;
+
+  const blocks = page.querySelectorAll(".scroll-block");
+  blocks.forEach((block) => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: block,
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      defaults: { ease: "power3.out" },
+    });
+
+    const initialHides = block.querySelectorAll(".initial-hide");
+    if (initialHides.length > 0) {
+      tl.fromTo(
+        initialHides,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 1.2, stagger: 0.1 },
+        0.2,
+      );
+    }
+
+    const chars = block.querySelectorAll(".reveal-char");
+    if (chars.length > 0) {
+      tl.to(
+        chars,
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+          scale: 1,
+          y: 0,
+          stagger: {
+            amount: 0.8,
+            from: "random",
+          },
+          duration: 1.5,
+        },
+        0.1,
+      );
+    }
+
+    const paragraphs = block.querySelectorAll(".text-reveal-p");
+    if (paragraphs.length > 0) {
+      tl.fromTo(
+        paragraphs,
+        { opacity: 0, filter: "blur(10px)", y: 10 },
+        { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.5 },
+        0.4,
+      );
+    }
+
+    const imgContainers = block.querySelectorAll(".reveal-img-container");
+    const images = block.querySelectorAll(".reveal-img");
+
+    if (imgContainers.length > 0 && images.length > 0) {
+      tl.to(
+        imgContainers,
+        {
+          clipPath: "inset(0% 0% 0% 0% round 16px)",
+          duration: 1.8,
+          ease: "power4.inOut",
+          stagger: 0.15,
+        },
+        0.3,
+      );
+
+      tl.to(
+        images,
+        {
+          scale: 1,
+          rotate: 0,
+          filter: "blur(0px) brightness(1) contrast(100%)",
+          duration: 2.2,
+          ease: "power3.out",
+          stagger: 0.15,
+        },
+        0.3,
+      );
+    }
+  });
+
+  ScrollTrigger.refresh();
+}
+
 function Eyebrow({ children }) {
   return (
     <span className="text-xs tracking-[0.3em] text-champagne uppercase font-medium block initial-hide">
@@ -176,7 +306,31 @@ function PageFooter() {
 }
 
 function App() {
-  const currentPage = resolvePageKey();
+  const [currentPage, setCurrentPage] = useState(() => resolvePageKey());
+  const currentPageRef = useRef(currentPage);
+  const bootedRef = useRef(false);
+
+  useEffect(() => {
+    currentPageRef.current = currentPage;
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (!bootedRef.current) return;
+
+    const { ScrollTrigger } = window;
+    if (ScrollTrigger) {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    resetPageElements(currentPage);
+    requestAnimationFrame(() => {
+      setupScrollTriggers(currentPage);
+    });
+  }, [currentPage]);
 
   useEffect(() => {
     if (
@@ -261,126 +415,6 @@ function App() {
       requestAnimationFrame(update);
     }
 
-    function resetPageElements(pageId) {
-      const page = document.getElementById(`page-${pageId}`);
-      if (!page) return;
-
-      gsap.set(page.querySelectorAll(".reveal-char"), {
-        opacity: 0,
-        filter: "blur(25px)",
-        scale: 1.3,
-        y: 0,
-      });
-
-      gsap.set(page.querySelectorAll(".text-reveal-p"), {
-        opacity: 0,
-        filter: "blur(10px)",
-        y: 10,
-      });
-
-      gsap.set(page.querySelectorAll(".initial-hide"), {
-        opacity: 0,
-        y: 15,
-      });
-
-      gsap.set(page.querySelectorAll(".reveal-img-container"), {
-        clipPath: "inset(25% 25% 25% 25% round 32px)",
-      });
-
-      gsap.set(page.querySelectorAll(".reveal-img"), {
-        scale: 1.35,
-        rotate: -2,
-        filter: "blur(10px) brightness(0.2) contrast(180%)",
-      });
-    }
-
-    function setupScrollTriggers(pageId) {
-      const page = document.getElementById(`page-${pageId}`);
-      if (!page) return;
-
-      const blocks = page.querySelectorAll(".scroll-block");
-      blocks.forEach((block) => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: block,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-          defaults: { ease: "power3.out" },
-        });
-
-        const initialHides = block.querySelectorAll(".initial-hide");
-        if (initialHides.length > 0) {
-          tl.fromTo(
-            initialHides,
-            { opacity: 0, y: 15 },
-            { opacity: 1, y: 0, duration: 1.2, stagger: 0.1 },
-            0.2,
-          );
-        }
-
-        const chars = block.querySelectorAll(".reveal-char");
-        if (chars.length > 0) {
-          tl.to(
-            chars,
-            {
-              opacity: 1,
-              filter: "blur(0px)",
-              scale: 1,
-              y: 0,
-              stagger: {
-                amount: 0.8,
-                from: "random",
-              },
-              duration: 1.5,
-            },
-            0.1,
-          );
-        }
-
-        const paragraphs = block.querySelectorAll(".text-reveal-p");
-        if (paragraphs.length > 0) {
-          tl.fromTo(
-            paragraphs,
-            { opacity: 0, filter: "blur(10px)", y: 10 },
-            { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.5 },
-            0.4,
-          );
-        }
-
-        const imgContainers = block.querySelectorAll(".reveal-img-container");
-        const images = block.querySelectorAll(".reveal-img");
-
-        if (imgContainers.length > 0 && images.length > 0) {
-          tl.to(
-            imgContainers,
-            {
-              clipPath: "inset(0% 0% 0% 0% round 16px)",
-              duration: 1.8,
-              ease: "power4.inOut",
-              stagger: 0.15,
-            },
-            0.3,
-          );
-
-          tl.to(
-            images,
-            {
-              scale: 1,
-              rotate: 0,
-              filter: "blur(0px) brightness(1) contrast(100%)",
-              duration: 2.2,
-              ease: "power3.out",
-              stagger: 0.15,
-            },
-            0.3,
-          );
-        }
-      });
-
-      ScrollTrigger.refresh();
-    }
-
     function completePreloader() {
       const preloader = document.getElementById("preloader");
       const strips = document.querySelectorAll(".transition-strip");
@@ -426,7 +460,9 @@ function App() {
       );
 
       tl.add(() => {
-        setupScrollTriggers(currentPage);
+        bootedRef.current = true;
+        resetPageElements(currentPageRef.current);
+        setupScrollTriggers(currentPageRef.current);
       }, "-=0.8");
 
       tl.set(strips, { x: "-100%" });
@@ -439,13 +475,14 @@ function App() {
       document.body.classList.add("no-scroll");
 
       const currentActiveSection = document.getElementById(
-        `page-${currentPage}`,
+        `page-${currentPageRef.current}`,
       );
       const strips = document.querySelectorAll(".transition-strip");
 
       const transitionTimeline = gsap.timeline({
         onComplete: () => {
-          window.location.assign(targetHref);
+          isTransitioning = false;
+          document.body.classList.remove("no-scroll");
         },
       });
 
@@ -469,10 +506,24 @@ function App() {
         stagger: 0.08,
         ease: "power3.inOut",
       });
+
+      transitionTimeline.add(() => {
+        const targetPage = targetHref.replace("./", "").replace(".html", "");
+        history.pushState({}, "", targetHref);
+        currentPageRef.current = targetPage;
+        setCurrentPage(targetPage);
+      });
+
+      transitionTimeline.to(strips, {
+        x: "100%",
+        duration: 0.8,
+        stagger: 0.06,
+        ease: "power3.inOut",
+      });
     }
 
     function setupNavigation() {
-      const navLinks = document.querySelectorAll(".nav-link");
+      const navLinks = document.querySelectorAll('a[href$=".html"]');
 
       navLinks.forEach((link) => {
         const handler = (event) => {
@@ -492,6 +543,15 @@ function App() {
         link.addEventListener("click", handler);
         navCleanup.push(() => link.removeEventListener("click", handler));
       });
+
+      const handlePopState = () => {
+        const targetPage = resolvePageKey();
+        currentPageRef.current = targetPage;
+        setCurrentPage(targetPage);
+      };
+
+      window.addEventListener("popstate", handlePopState);
+      navCleanup.push(() => window.removeEventListener("popstate", handlePopState));
     }
 
     setupNavigation();
@@ -529,7 +589,7 @@ function App() {
       gsap.globalTimeline.clear();
       document.body.className = originalBodyClassName;
     };
-  }, [currentPage]);
+  }, []);
 
   return (
     <>
@@ -638,8 +698,8 @@ function HomePage() {
               MISS.
             </h1>
             <p className="text-gray-400 text-sm md:text-base max-w-md font-light leading-relaxed text-reveal-p">
-              Portraits, campaigns, editorials, and events with a clean edge
-              and a sharp eye.
+              Portraits, campaigns, editorials, and events with a clean edge and
+              a sharp eye.
             </p>
             <div className="pt-4 flex flex-wrap gap-3 initial-hide">
               <a
