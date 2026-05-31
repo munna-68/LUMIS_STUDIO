@@ -163,6 +163,13 @@ function resolvePageHref(pageKey) {
   return pageKey === "home" ? "./index.html" : `./${pageKey}.html`;
 }
 
+function resolvePageKeyFromHref(href) {
+  const normalizedHref = href.replace(/^\.\//, "");
+  const pageKey = normalizedHref.replace(/\.html$/, "");
+
+  return pageKey === "index" ? "home" : pageKey;
+}
+
 function resetPageElements(pageId) {
   const { gsap } = window;
   if (!gsap) return;
@@ -508,7 +515,7 @@ function App() {
       });
 
       transitionTimeline.add(() => {
-        const targetPage = targetHref.replace("./", "").replace(".html", "");
+        const targetPage = resolvePageKeyFromHref(targetHref);
         history.pushState({}, "", targetHref);
         currentPageRef.current = targetPage;
         setCurrentPage(targetPage);
