@@ -372,12 +372,29 @@ function PageFooter() {
 
 function App() {
   const [currentPage, setCurrentPage] = useState(() => resolvePageKey());
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentPageRef = useRef(currentPage);
   const bootedRef = useRef(false);
 
   useEffect(() => {
     currentPageRef.current = currentPage;
   }, [currentPage]);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (!bootedRef.current) return;
@@ -634,7 +651,7 @@ function App() {
         className="fixed inset-0 bg-dark z-[100] flex flex-col justify-center items-center px-6"
       >
         <div className="text-center space-y-4 max-w-md w-full">
-          <div className="w-8 h-[1px] bg-champagne/20 mx-auto mb-2"></div>
+          <div className="w-8 h-[2px] md:h-px bg-champagne/20 mx-auto mb-2 transform-gpu"></div>
           <h2
             id="preloader-title"
             className="font-mono text-sm md:text-base font-bold tracking-[0.5em] text-white select-none uppercase"
@@ -647,7 +664,7 @@ function App() {
           >
             BOOTING SYSTEM_
           </div>
-          <div className="w-8 h-[1px] bg-champagne/20 mx-auto mt-2"></div>
+          <div className="w-8 h-[2px] md:h-px bg-champagne/20 mx-auto mt-2 transform-gpu"></div>
         </div>
       </div>
 
@@ -662,7 +679,7 @@ function App() {
 
       <header
         id="global-header"
-        className="fixed top-0 left-0 w-full z-[120] px-6 py-6 md:px-12 flex justify-between items-center pointer-events-none mix-blend-difference"
+        className="fixed top-0 left-0 w-full z-[120] px-6 py-6 md:px-12 flex items-start md:items-center justify-between gap-4 pointer-events-none mix-blend-difference"
       >
         <a
           href="./index.html"
@@ -678,7 +695,47 @@ function App() {
             }`}
           ></span>
         </a>
-        <nav className="flex space-x-6 md:space-x-10 text-xs md:text-sm tracking-wide uppercase font-normal mix-blend-difference pointer-events-auto">
+        <div className="pointer-events-auto flex items-center gap-3 md:hidden">
+          <a
+            href="./contact.html"
+            className={`nav-link inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-[10px] tracking-[0.35em] uppercase transition-colors duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-champagne/20 ${
+              currentPage === "contact"
+                ? "text-gray-400 border-champagne/50"
+                : "text-white hover:text-gray-300 hover:border-champagne/40"
+            }`}
+            data-page="contact"
+            aria-current={currentPage === "contact" ? "page" : undefined}
+          >
+            Contact
+          </a>
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            className="nav-link inline-flex items-center gap-3 rounded-full border border-white/15 px-4 py-2 text-[10px] tracking-[0.35em] uppercase text-white transition-colors duration-200 ease-out hover:text-gray-300 hover:border-champagne/40 focus:outline-none focus:ring-2 focus:ring-champagne/20"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          >
+            <span
+              className={`relative flex h-3 w-4 items-center justify-center transition-transform duration-300 ease-out ${
+                isMobileMenuOpen ? "rotate-45" : "rotate-0"
+              }`}
+            >
+              <span
+                className={`absolute h-px w-4 bg-current transition-transform duration-300 ease-out ${
+                  isMobileMenuOpen ? "translate-y-0 rotate-90" : "-translate-y-[4px]"
+                }`}
+              ></span>
+              <span
+                className={`absolute h-px w-4 bg-current transition-transform duration-300 ease-out ${
+                  isMobileMenuOpen ? "scale-x-0" : "translate-y-[4px]"
+                }`}
+              ></span>
+            </span>
+            <span>{isMobileMenuOpen ? "Close" : "Menu"}</span>
+          </button>
+        </div>
+        <nav className="hidden md:flex space-x-6 md:space-x-10 text-xs md:text-sm tracking-wide uppercase font-normal mix-blend-difference pointer-events-auto">
           {NAV_ITEMS.map((item) => {
             const isActive = currentPage === item.page;
 
@@ -707,6 +764,57 @@ function App() {
           })}
         </nav>
       </header>
+
+      <div
+        id="mobile-navigation"
+        className={`fixed inset-x-0 top-[72px] z-[119] md:hidden transition-all duration-300 ease-out ${
+          isMobileMenuOpen
+            ? "pointer-events-auto opacity-100 translate-y-0"
+            : "pointer-events-none opacity-0 -translate-y-2"
+        }`}
+        aria-hidden={!isMobileMenuOpen}
+      >
+        <div className="mx-4 rounded-[28px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-2xl shadow-black/50 overflow-hidden">
+          <div className="px-5 pt-5 pb-3 border-b border-white/5 flex items-center justify-between">
+            <span className="text-[10px] tracking-[0.35em] uppercase text-champagne/70 font-syne">
+              Navigation
+            </span>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-gray-500">
+              LUMIS STUDIO
+            </span>
+          </div>
+          <nav className="px-5 py-4 space-y-2">
+            {NAV_ITEMS.map((item, index) => {
+              const isActive = currentPage === item.page;
+
+              return (
+                <a
+                  key={item.page}
+                  href={item.href}
+                  data-page={item.page}
+                  aria-current={isActive ? "page" : undefined}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ transitionDelay: `${index * 60}ms` }}
+                  className={`nav-link flex items-center justify-between rounded-2xl border px-4 py-4 font-syne text-lg uppercase tracking-wide transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-champagne/20 ${
+                    isMobileMenuOpen
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-2 opacity-0"
+                  } ${
+                    isActive
+                      ? "border-champagne/40 bg-white/5 text-gray-300"
+                      : "border-white/10 text-white hover:border-champagne/30 hover:bg-white/5 hover:text-gray-200"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-gray-500">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+      </div>
 
       <main id="global-main" className="relative min-h-screen w-full">
         {currentPage === "home" && <HomePage />}
