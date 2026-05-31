@@ -687,7 +687,9 @@ function App() {
                 key={item.page}
                 href={item.href}
                 className={`nav-link relative py-1 overflow-hidden group transition-colors duration-200 ease-out text-xs md:text-sm font-normal tracking-wide focus:outline-none focus:ring-2 focus:ring-champagne/20 rounded-sm ${
-                  isActive ? "text-gray-400" : "text-white hover:text-gray-300 focus:text-gray-300"
+                  isActive
+                    ? "text-gray-400"
+                    : "text-white hover:text-gray-300 focus:text-gray-300"
                 }`}
                 data-page={item.page}
                 aria-current={isActive ? "page" : undefined}
@@ -695,7 +697,9 @@ function App() {
                 <span>{item.label}</span>
                 <span
                   className={`absolute bottom-0 left-0 w-full h-[1px] bg-gray-400 transform origin-left transition-transform duration-300 ease-out ${
-                    isActive ? "scale-x-100 bg-champagne" : "scale-x-0 group-hover:scale-x-100"
+                    isActive
+                      ? "scale-x-100 bg-champagne"
+                      : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 ></span>
               </a>
@@ -896,10 +900,10 @@ function ServicesPage() {
       className="page-section min-h-screen flex flex-col justify-start"
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start my-auto">
-          <div className="lg:col-span-6 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 xl:grid-cols-1 gap-10 lg:gap-16 items-start my-auto">
+          <div className="lg:col-span-6 xl:col-span-1 space-y-6 pr-6 lg:pr-12 overflow-hidden">
             <Eyebrow>Studio services</Eyebrow>
-            <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.92] tracking-tight text-reveal">
+            <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.92] tracking-tight text-reveal max-w-[40ch] md:max-w-[48ch] lg:max-w-[34ch]">
               BUILT FOR
               <br />
               EVERY SHOOT.
@@ -909,11 +913,11 @@ function ServicesPage() {
             </p>
           </div>
 
-          <div className="lg:col-span-6 grid gap-4">
+          <div className="lg:col-span-6 xl:col-span-1 flex flex-col justify-center items-end gap-8 px-4 relative z-10">
             {SERVICES.map((service) => (
               <article
                 key={service.title}
-                className="p-8 border border-white/5 rounded-2xl bg-dark hover:border-champagne/40 transition-colors duration-500 space-y-4 initial-hide"
+                className="w-full max-w-md p-8 border border-white/5 rounded-2xl bg-dark hover:border-champagne/40 transition-colors duration-500 space-y-4 initial-hide"
               >
                 <span className="text-champagne font-syne text-xl">
                   {service.number}
