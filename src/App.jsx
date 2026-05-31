@@ -714,7 +714,11 @@ function App() {
             className="nav-link inline-flex items-center gap-3 rounded-full border border-white/15 px-4 py-2 text-[10px] tracking-[0.35em] uppercase text-white transition-colors duration-200 ease-out hover:text-gray-300 hover:border-champagne/40 focus:outline-none focus:ring-2 focus:ring-champagne/20"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation"
-            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              isMobileMenuOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+            }
           >
             <span
               className={`relative flex h-3 w-4 items-center justify-center transition-transform duration-300 ease-out ${
@@ -723,7 +727,9 @@ function App() {
             >
               <span
                 className={`absolute h-px w-4 bg-current transition-transform duration-300 ease-out ${
-                  isMobileMenuOpen ? "translate-y-0 rotate-90" : "-translate-y-[4px]"
+                  isMobileMenuOpen
+                    ? "translate-y-0 rotate-90"
+                    : "-translate-y-[4px]"
                 }`}
               ></span>
               <span
