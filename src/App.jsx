@@ -727,10 +727,18 @@ function HomePage() {
       className="page-section min-h-screen flex flex-col justify-start"
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 xl:items-start my-auto">
-          <div className="lg:col-span-7 space-y-6 xl:pr-8 overflow-hidden">
+        <div className="relative min-h-screen w-full overflow-hidden">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            src=""
+          />
+          <div className="absolute bottom-20 md:bottom-24 left-8 md:left-12 max-w-4xl z-10 space-y-6 xl:pr-8 overflow-hidden">
             <Eyebrow>LUMIS STUDIO</Eyebrow>
-            <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.88] tracking-tight text-reveal max-w-[10ch] sm:max-w-[12ch]">
+            <h1 className="text-3xl md:text-5xl xl:text-6xl font-syne font-extrabold uppercase leading-[0.88] tracking-tight text-reveal max-w-[10ch] sm:max-w-[12ch]">
               WE SHOOT
               <br />
               WHAT OTHERS
@@ -755,33 +763,6 @@ function HomePage() {
                 Book a Shoot
               </a>
             </div>
-          </div>
-
-          <div className="lg:col-span-5 xl:mt-20 xl:self-start flex justify-center items-center relative z-10">
-            <a
-              href="./portfolio.html"
-              className="group block w-full max-w-lg aspect-[4/5] reveal-img-container rounded-2xl shadow-2xl shadow-black/50 relative overflow-hidden"
-            >
-              <img
-                src="/img/home-golden-hour.svg"
-                alt="Golden hour portrait session placeholder"
-                className="w-full h-full object-cover reveal-img"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent opacity-80"></div>
-              <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end gap-4">
-                <div>
-                  <span className="text-xs text-champagne/80 tracking-wider uppercase">
-                    Featured Session
-                  </span>
-                  <h3 className="font-syne text-lg uppercase tracking-wide">
-                    THE GOLDEN HOUR SESSION
-                  </h3>
-                </div>
-                <span className="text-xs text-white/50 tracking-widest uppercase text-right">
-                  Austin, TX
-                </span>
-              </div>
-            </a>
           </div>
         </div>
       </div>
