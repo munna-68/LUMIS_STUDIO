@@ -727,10 +727,10 @@ function HomePage() {
       className="page-section min-h-screen flex flex-col justify-start"
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center my-auto">
-          <div className="lg:col-span-6 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 xl:items-start my-auto">
+          <div className="lg:col-span-7 space-y-6 xl:pr-8 overflow-hidden">
             <Eyebrow>LUMIS STUDIO</Eyebrow>
-            <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.92] tracking-tight text-reveal">
+            <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.88] tracking-tight text-reveal max-w-[10ch] sm:max-w-[12ch]">
               WE SHOOT
               <br />
               WHAT OTHERS
@@ -757,7 +757,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="lg:col-span-6 flex justify-center items-center">
+          <div className="lg:col-span-5 xl:mt-20 xl:self-start flex justify-center items-center relative z-10">
             <a
               href="./portfolio.html"
               className="group block w-full max-w-lg aspect-[4/5] reveal-img-container rounded-2xl shadow-2xl shadow-black/50 relative overflow-hidden"
@@ -965,13 +965,15 @@ function AboutPage() {
       className="page-section min-h-screen flex flex-col justify-start"
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center my-auto">
-          <div className="lg:col-span-6 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:items-start my-auto">
+          <div className="lg:col-span-7 space-y-6 xl:pr-8">
             <Eyebrow>About the studio</Eyebrow>
-            <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.92] tracking-tight text-reveal">
+            <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.88] tracking-tight text-reveal max-w-[10ch] sm:max-w-[12ch]">
               OBSESSED
               <br />
-              WITH THE FRAME.
+              WITH THE
+              <br />
+              FRAME.
             </h1>
             <p className="text-gray-400 text-sm md:text-base max-w-xl font-light leading-relaxed text-reveal-p">
               LUMIS STUDIO is a lean photography practice built for portraits,
@@ -1005,7 +1007,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-5 xl:mt-20 xl:self-start">
             <div className="w-full aspect-[4/5] reveal-img-container rounded-2xl shadow-2xl shadow-black/40">
               <img
                 src="/img/about-studio.svg"
