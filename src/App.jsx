@@ -200,7 +200,8 @@ function prepareTextAnimations() {
     lines.forEach((line, index) => {
       const cleanLine = line.trim();
       const lineWrapper = document.createElement("span");
-      lineWrapper.className = "inline-block whitespace-nowrap";
+      lineWrapper.className =
+        "inline-block max-w-full whitespace-normal md:whitespace-nowrap";
 
       for (const char of cleanLine) {
         if (char === " ") {
@@ -1031,7 +1032,7 @@ function ServicesPage() {
 
       <div className="scroll-block bg-darkgray py-24 px-6 md:px-12 w-full border-t border-white/5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="space-y-4 max-w-2xl">
+          <div className="space-y-4 max-w-2xl min-w-0 overflow-hidden">
             <Eyebrow>Start here</Eyebrow>
             <h2 className="text-3xl md:text-5xl font-syne font-extrabold uppercase tracking-tight text-reveal">
               Send the brief.
@@ -1061,7 +1062,7 @@ function AboutPage() {
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:items-start my-auto">
-          <div className="lg:col-span-7 space-y-6 xl:pr-8">
+          <div className="lg:col-span-7 space-y-6 xl:pr-8 min-w-0 overflow-hidden">
             <Eyebrow>About the studio</Eyebrow>
             <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.88] tracking-tight text-reveal max-w-[10ch] sm:max-w-[12ch]">
               OBSESSED
@@ -1102,7 +1103,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 xl:mt-20 xl:self-start">
+          <div className="lg:col-span-5 xl:mt-20 xl:self-start min-w-0">
             <div className="w-full aspect-[4/5] reveal-img-container rounded-2xl shadow-2xl shadow-black/40">
               <img
                 src="/img/about-studio.svg"
@@ -1238,7 +1239,7 @@ function ContactPage() {
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 xl:grid-cols-1 gap-12 lg:gap-16 items-start my-auto">
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6 min-w-0 overflow-hidden">
             <Eyebrow>Contact</Eyebrow>
             <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.92] tracking-tight text-reveal">
               LET&apos;S MAKE
@@ -1251,7 +1252,7 @@ function ContactPage() {
             </p>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 min-w-0">
             <form
               className="grid gap-4 p-6 md:p-8 border border-white/5 rounded-2xl bg-dark"
               onSubmit={(event) => event.preventDefault()}
