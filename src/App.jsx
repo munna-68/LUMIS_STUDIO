@@ -1054,12 +1054,14 @@ function JournalPage() {
       className="page-section min-h-screen flex flex-col justify-start"
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="space-y-6 max-w-4xl">
+        <div className="space-y-6 max-w-4xl mx-auto">
           <Eyebrow>Journal</Eyebrow>
           <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.92] tracking-tight text-reveal">
             THOUGHTS ON
             <br />
-            LIGHT, CRAFT &amp; VISION.
+            LIGHT, CRAFT &amp;
+            <br />
+            VISION.
           </h1>
           <p className="text-gray-400 text-sm md:text-base max-w-xl font-light leading-relaxed text-reveal-p">
             Short notes from the studio floor. Clear, direct, and useful.
