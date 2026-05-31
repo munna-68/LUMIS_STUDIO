@@ -170,6 +170,64 @@ function resolvePageKeyFromHref(href) {
   return pageKey === "index" ? "home" : pageKey;
 }
 
+function collectRevealLines(element) {
+  const lines = [];
+  let currentLine = "";
+
+  element.childNodes.forEach((node) => {
+    if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "BR") {
+      lines.push(currentLine);
+      currentLine = "";
+      return;
+    }
+
+    currentLine += node.textContent || "";
+  });
+
+  lines.push(currentLine);
+  return lines;
+}
+
+function prepareTextAnimations() {
+  const textReveals = document.querySelectorAll(".text-reveal");
+
+  textReveals.forEach((el) => {
+    if (el.dataset.textRevealPrepared === "true") return;
+
+    const lines = collectRevealLines(el);
+    const fragment = document.createDocumentFragment();
+
+    lines.forEach((line, index) => {
+      const cleanLine = line.trim();
+      const lineWrapper = document.createElement("span");
+      lineWrapper.className = "inline-block whitespace-nowrap";
+
+      for (const char of cleanLine) {
+        if (char === " ") {
+          const space = document.createElement("span");
+          space.className = "inline-block w-2 md:w-3";
+          space.innerHTML = "&nbsp;";
+          lineWrapper.appendChild(space);
+        } else {
+          const charSpan = document.createElement("span");
+          charSpan.className = "reveal-char";
+          charSpan.textContent = char;
+          lineWrapper.appendChild(charSpan);
+        }
+      }
+
+      fragment.appendChild(lineWrapper);
+
+      if (index < lines.length - 1) {
+        fragment.appendChild(document.createElement("br"));
+      }
+    });
+
+    el.replaceChildren(fragment);
+    el.dataset.textRevealPrepared = "true";
+  });
+}
+
 function resetPageElements(pageId) {
   const { gsap } = window;
   if (!gsap) return;
@@ -333,6 +391,7 @@ function App() {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
+    prepareTextAnimations();
     resetPageElements(currentPage);
     requestAnimationFrame(() => {
       setupScrollTriggers(currentPage);
@@ -357,38 +416,6 @@ function App() {
     let toastTimeout;
     let isTransitioning = false;
     const navCleanup = [];
-
-    function prepareTextAnimations() {
-      const textReveals = document.querySelectorAll(".text-reveal");
-      textReveals.forEach((el) => {
-        const lines = el.innerHTML.split("<br>");
-        let formattedHTML = "";
-
-        lines.forEach((line, index) => {
-          const cleanLine = line.trim();
-          let lineHTML = "";
-
-          for (const char of cleanLine) {
-            if (char === " ") {
-              lineHTML += '<span class="inline-block w-2 md:w-3">&nbsp;</span>';
-            } else {
-              lineHTML += `<span class="reveal-char">${char}</span>`;
-            }
-          }
-
-          formattedHTML +=
-            '<span class="inline-block whitespace-nowrap">' +
-            lineHTML +
-            "</span>";
-
-          if (index < lines.length - 1) {
-            formattedHTML += "<br>";
-          }
-        });
-
-        el.innerHTML = formattedHTML;
-      });
-    }
 
     function runScramble(element, targetWord, duration = 1000, callback) {
       const chars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
