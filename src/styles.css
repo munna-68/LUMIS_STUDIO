@@ -33,6 +33,11 @@ a,
   touch-action: manipulation;
 }
 
+/* smoother color transitions for nav links */
+.nav-link {
+  transition: color 200ms ease-out, opacity 200ms ease-out;
+}
+
 img {
   display: block;
 }

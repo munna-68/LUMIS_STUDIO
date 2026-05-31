@@ -666,8 +666,8 @@ function App() {
       >
         <a
           href="./index.html"
-          className={`nav-link font-syne text-xl tracking-widest font-bold uppercase mix-blend-difference pointer-events-auto relative py-1 overflow-hidden group ${
-            currentPage === "home" ? "text-champagne" : "text-white"
+          className={`nav-link font-syne text-lg md:text-xl tracking-wide font-semibold uppercase mix-blend-difference pointer-events-auto relative py-1 overflow-hidden group focus:outline-none focus:ring-2 focus:ring-champagne/25 ${
+            currentPage === "home" ? "text-gray-400" : "text-white"
           }`}
           data-page="home"
         >
@@ -678,7 +678,7 @@ function App() {
             }`}
           ></span>
         </a>
-        <nav className="flex space-x-6 md:space-x-10 text-sm tracking-widest uppercase font-medium mix-blend-difference pointer-events-auto">
+        <nav className="flex space-x-6 md:space-x-10 text-xs md:text-sm tracking-wide uppercase font-normal mix-blend-difference pointer-events-auto">
           {NAV_ITEMS.map((item) => {
             const isActive = currentPage === item.page;
 
@@ -686,16 +686,16 @@ function App() {
               <a
                 key={item.page}
                 href={item.href}
-                className={`nav-link relative py-1 overflow-hidden group transition-colors duration-300 ${
-                  isActive ? "text-champagne" : "text-gray-400 hover:text-white"
+                className={`nav-link relative py-1 overflow-hidden group transition-colors duration-200 ease-out text-xs md:text-sm font-normal tracking-wide focus:outline-none focus:ring-2 focus:ring-champagne/20 rounded-sm ${
+                  isActive ? "text-gray-400" : "text-white hover:text-gray-300 focus:text-gray-300"
                 }`}
                 data-page={item.page}
                 aria-current={isActive ? "page" : undefined}
               >
                 <span>{item.label}</span>
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[1px] bg-white transform origin-left transition-transform duration-300 group-hover:scale-x-100 ${
-                    isActive ? "scale-x-100 bg-champagne" : "scale-x-0"
+                  className={`absolute bottom-0 left-0 w-full h-[1px] bg-gray-400 transform origin-left transition-transform duration-300 ease-out ${
+                    isActive ? "scale-x-100 bg-champagne" : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 ></span>
               </a>
