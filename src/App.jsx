@@ -1136,7 +1136,7 @@ function ContactPage() {
       className="page-section min-h-screen flex flex-col justify-start"
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 xl:grid-cols-1 gap-12 lg:gap-16 items-start my-auto">
           <div className="lg:col-span-5 space-y-6">
             <Eyebrow>Contact</Eyebrow>
             <h1 className="text-4xl md:text-6xl xl:text-7xl font-syne font-extrabold uppercase leading-[0.92] tracking-tight text-reveal">
