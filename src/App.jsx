@@ -200,7 +200,8 @@ function prepareTextAnimations() {
     lines.forEach((line, index) => {
       const cleanLine = line.trim();
       const lineWrapper = document.createElement("span");
-      lineWrapper.className = "inline-block max-w-full whitespace-normal md:whitespace-nowrap";
+      lineWrapper.className =
+        "inline-block max-w-full whitespace-normal md:whitespace-nowrap";
 
       for (const char of cleanLine) {
         if (char === " ") {
@@ -711,9 +712,7 @@ function App() {
           className="nav-link font-syne text-lg md:text-xl tracking-wide font-semibold uppercase mix-blend-difference pointer-events-auto relative py-1 overflow-hidden group text-white focus:outline-none focus:ring-2 focus:ring-champagne/25"
         >
           <span>LUMIS</span>
-          <span
-            className="absolute bottom-0 left-0 w-full h-[1px] bg-champagne transform origin-left scale-x-0 transition-transform duration-300"
-          ></span>
+          <span className="absolute bottom-0 left-0 w-full h-[1px] bg-champagne transform origin-left scale-x-0 transition-transform duration-300"></span>
         </a>
         <div className="pointer-events-auto flex items-center gap-3 md:hidden">
           <a
