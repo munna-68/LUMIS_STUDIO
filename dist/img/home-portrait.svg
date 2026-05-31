@@ -1,9 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="LUMIS portrait placeholder">
-  <rect width="1200" height="1500" fill="#0f0f0f"/>
-  <rect x="48" y="48" width="1104" height="1404" fill="none" stroke="#242424" stroke-width="2"/>
-  <path d="M190 1140C330 900 460 760 600 720C740 760 870 900 1010 1140" fill="none" stroke="#1f1f1f" stroke-width="8"/>
-  <rect x="340" y="290" width="520" height="18" fill="#181818"/>
-  <rect x="250" y="340" width="700" height="8" fill="#181818"/>
-  <rect x="320" y="380" width="560" height="8" fill="#181818"/>
-  <text x="72" y="1410" fill="#6c6c6c" font-family="Georgia, serif" font-size="44" letter-spacing="5">LUMIS / PORTRAIT</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="Gray placeholder">
+  <rect width="1200" height="1500" fill="#555555"/>
 </svg>

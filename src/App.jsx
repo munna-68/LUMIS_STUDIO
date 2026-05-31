@@ -551,7 +551,9 @@ function App() {
       };
 
       window.addEventListener("popstate", handlePopState);
-      navCleanup.push(() => window.removeEventListener("popstate", handlePopState));
+      navCleanup.push(() =>
+        window.removeEventListener("popstate", handlePopState),
+      );
     }
 
     setupNavigation();

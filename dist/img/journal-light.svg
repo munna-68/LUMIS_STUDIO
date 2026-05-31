@@ -1,8 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Journal light placeholder">
-  <rect width="1200" height="900" fill="#101010"/>
-  <rect x="48" y="48" width="1104" height="804" fill="none" stroke="#242424" stroke-width="2"/>
-  <circle cx="840" cy="280" r="150" fill="#161616"/>
-  <rect x="180" y="490" width="840" height="16" fill="#1a1a1a"/>
-  <rect x="180" y="540" width="620" height="16" fill="#1a1a1a"/>
-  <text x="72" y="830" fill="#6c6c6c" font-family="Georgia, serif" font-size="40" letter-spacing="5">LUMIS / JOURNAL 01</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Gray placeholder">
+  <rect width="1200" height="900" fill="#555555"/>
 </svg>
