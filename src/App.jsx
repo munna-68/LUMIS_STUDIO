@@ -886,10 +886,26 @@ function HomePage() {
       className="page-section min-h-screen flex flex-col justify-start"
     >
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="relative min-h-screen w-full overflow-hidden">
+        <div
+          className="relative min-h-screen w-full overflow-hidden"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            width: "100vw",
+            marginLeft: "calc(50% - 50vw)",
+          }}
+        >
           <video
             ref={videoRef}
             className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
             autoPlay
             loop
             muted
