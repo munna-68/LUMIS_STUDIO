@@ -856,6 +856,30 @@ function App() {
 }
 
 function HomePage() {
+  const videoRef = useRef(null);
+  const [videoSrc, setVideoSrc] = useState("/video/desktop.mp4");
+
+  useEffect(() => {
+    const syncVideoSrc = () => {
+      setVideoSrc(
+        window.innerWidth >= 768 ? "/video/desktop.mp4" : "/video/mobile.mp4",
+      );
+    };
+
+    syncVideoSrc();
+    window.addEventListener("resize", syncVideoSrc);
+
+    return () => {
+      window.removeEventListener("resize", syncVideoSrc);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, [videoSrc]);
+
   return (
     <section
       id="page-home"
@@ -864,13 +888,15 @@ function HomePage() {
       <div className="scroll-block min-h-screen flex flex-col justify-center px-6 py-24 md:px-12 max-w-7xl mx-auto w-full">
         <div className="relative min-h-screen w-full overflow-hidden">
           <video
+            ref={videoRef}
             className="absolute inset-0 w-full h-full object-cover"
             autoPlay
             loop
             muted
             playsInline
-            src=""
+            src={videoSrc}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
           <div className="absolute bottom-20 md:bottom-24 left-8 md:left-12 max-w-4xl z-10 space-y-6 xl:pr-8 overflow-hidden">
             <Eyebrow>LUMIS STUDIO</Eyebrow>
             <h1 className="text-3xl md:text-5xl xl:text-6xl font-syne font-extrabold uppercase leading-[0.88] tracking-tight text-reveal max-w-[10ch] sm:max-w-[12ch]">
